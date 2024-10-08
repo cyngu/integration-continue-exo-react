@@ -12,12 +12,11 @@ export const isUnderage = (birthDate) => {
 
 export const isValidEmail = (email) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  console.log(emailPattern.test(email));
   return emailPattern.test(email);
 };
 
 export const isValidName = (name) => {
-  const namePattern = new RegExp("^[A-Za-zÀ-ÿ]+(\\s[A-Za-zÀ-ÿ]+)?$"); // Allow letters, spaces, apostrophees, dashes
+  const namePattern = /^[A-Za-zÀ-ÿ'-]+(?:\s[A-Za-zÀ-ÿ'-]+)*$/; // Allow letters, spaces, apostrophees, dashes
   return namePattern.test(name);
 };
 
