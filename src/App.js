@@ -1,6 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./features/UserForm";
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -27,8 +29,18 @@ function App() {
         </a>
         <button onClick={clickOnMe}>Click me</button>
         <span data-testid="count">{count}</span>
-        
+
         <UserForm />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          pauseOnFocusLoss
+          theme="colored"
+        />
       </header>
     </div>
   );

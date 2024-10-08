@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 import {
   isUnderage,
   isValidEmail,
@@ -55,7 +56,7 @@ function UserForm() {
 
     localStorage.setItem("formData", JSON.stringify(formData));
 
-    alert("Enregistré dans le LocalStorage");
+    toast.success('Données enregistrées dans le localStorage !');
   };
 
   return (
