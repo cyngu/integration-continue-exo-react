@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import {
+  isUnderage,
+  isValidEmail,
+  isValidName,
+  isValidZipcode,
+} from "./UserFormService";
 
 function UserForm() {
   const [formData, setFormData] = useState({
@@ -9,37 +15,6 @@ function UserForm() {
     city: "",
     zipCode: "",
   });
-
-  const isUnderage = (birthDate) => {
-    const today = new Date();
-    const birth = new Date(birthDate);
-    const age = today.getFullYear() - birth.getFullYear();
-    const monthDiff = today.getMonth() - birth.getMonth();
-
-    if (
-      monthDiff < 0 ||
-      (monthDiff === 0 && today.getDate() < birth.getDate())
-    ) {
-      return age < 18;
-    }
-    return age < 18;
-  };
-
-  const isValidEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    console.log(emailPattern.test(email))
-    return emailPattern.test(email);
-  };
-
-  const isValidName = (name) => {
-    const namePattern = new RegExp('^[A-Za-zÀ-ÿ]+(\\s[A-Za-zÀ-ÿ]+)?$'); // Allow letters, spaces, apostrophees, dashes
-    return namePattern.test(name);
-  };
-
-  const isValidZipcode = (zipcode) => {
-    const zipcodePattern = /^[0-9]{5}$/;
-    return zipcodePattern.test(zipcode);
-};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,20 +28,23 @@ function UserForm() {
     e.preventDefault();
     console.log("Données du formulaire :", formData);
 
-    if(!isValidName(formData.firstName)) {
-      alert("Votre prénom n'est pas dans un format valide.")
+    if (!isValidName(formData.firstName)) {
+      alert("Votre prénom n'est pas dans un format valide.");
+      return;
     }
 
-    if(!isValidName(formData.lastName)) {
-      alert("Votre nom n'est pas dans un format valide.")
+    if (!isValidName(formData.lastName)) {
+      alert("Votre nom n'est pas dans un format valide.");
+      return;
     }
 
-    if(!isValidEmail(formData.email)) {
-      alert("Votre email n'est pas dans un format valide.")
+    if (!isValidEmail(formData.email)) {
+      alert("Votre email n'est pas dans un format valide.");
+      return;
     }
 
     if (isUnderage(formData.birthDate)) {
-      alert('Vous devez avoir au moins 18 ans pour vous inscrire.');
+      alert("Vous devez avoir au moins 18 ans pour vous inscrire.");
       return;
     }
 
@@ -74,7 +52,7 @@ function UserForm() {
       alert("Votre code postal n'est pas dans un format valide.");
       return;
     }
-    
+
     localStorage.setItem("formData", JSON.stringify(formData));
 
     alert("Enregistré dans le LocalStorage");
