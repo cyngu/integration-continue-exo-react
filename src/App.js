@@ -1,13 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState } from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
+import UserForm from "./features/UserForm";
 
 function App() {
   let [count, setCount] = useState(0);
 
   const clickOnMe = () => {
     setCount(count + 1);
-  }
+  };
 
   return (
     <div className="App">
@@ -26,6 +27,8 @@ function App() {
         </a>
         <button onClick={clickOnMe}>Click me</button>
         <span data-testid="count">{count}</span>
+        
+        <UserForm />
       </header>
     </div>
   );
