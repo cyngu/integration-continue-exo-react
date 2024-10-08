@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./features/UserForm";
 
 // TODO subscribers list
-// TODO disable submit button if one field is empty
 // TODO empty field after submit
 // TODO set validation for city
 // TODO separate counter in a proper component
