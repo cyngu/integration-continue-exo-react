@@ -5,6 +5,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./features/UserForm";
 
+// TODO subscribers list
+// TODO disable submit button if one field is empty
+// TODO empty field after submit
+// TODO set validation for city
+// TODO separate counter in a proper component
+// TODO generate a doc
+// TODO replace alert by red sentence
+
 function App() {
   let [count, setCount] = useState(0);
 
