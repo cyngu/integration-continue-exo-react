@@ -63,6 +63,15 @@ function UserForm() {
 
     localStorage.setItem("formData", JSON.stringify(formData));
 
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      birthDate: "",
+      city: "",
+      zipCode: "",
+    });
+
     toast.success("Données enregistrées dans le localStorage !");
   };
 

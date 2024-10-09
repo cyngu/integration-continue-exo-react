@@ -6,8 +6,6 @@ import UserForm from "./features/UserForm";
 import Counter from "./features/Counter";
 
 // TODO subscribers list
-// TODO empty field after submit
-// TODO set validation for city
 // TODO generate a doc
 // TODO replace alert by red sentence
 
