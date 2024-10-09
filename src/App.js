@@ -1,9 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./features/UserForm";
+import Counter from "./features/Counter";
 
 // TODO subscribers list
 // TODO empty field after submit
@@ -13,12 +13,6 @@ import UserForm from "./features/UserForm";
 // TODO replace alert by red sentence
 
 function App() {
-  let [count, setCount] = useState(0);
-
-  const clickOnMe = () => {
-    setCount(count + 1);
-  };
-
   return (
     <div className="">
       <header className="App-header">
@@ -34,9 +28,8 @@ function App() {
         >
           Learn React
         </a>
-        <button onClick={clickOnMe}>Click me</button>
-        <span data-testid="count">{count}</span>
 
+        <Counter />
         <UserForm />
         <ToastContainer
           position="top-right"
