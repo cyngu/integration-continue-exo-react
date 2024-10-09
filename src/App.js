@@ -8,7 +8,6 @@ import Counter from "./features/Counter";
 // TODO subscribers list
 // TODO empty field after submit
 // TODO set validation for city
-// TODO separate counter in a proper component
 // TODO generate a doc
 // TODO replace alert by red sentence
 

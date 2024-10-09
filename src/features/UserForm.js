@@ -51,6 +51,11 @@ function UserForm() {
       return;
     }
 
+    if (!isValidName(formData.city)) {
+      alert("Votre ville n'est pas dans un format valide.");
+      return;
+    }
+
     if (!isValidZipcode(formData.zipCode)) {
       alert("Votre code postal n'est pas dans un format valide.");
       return;
