@@ -7,7 +7,6 @@ import Counter from "./features/Counter";
 
 // TODO subscribers list
 // TODO generate a doc
-// TODO replace alert by red sentence
 
 function App() {
   return (
