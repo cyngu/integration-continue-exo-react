@@ -6,7 +6,6 @@ import UserForm from "./features/UserForm";
 import Counter from "./features/Counter";
 
 // TODO subscribers list
-// TODO generate a doc
 
 function App() {
   return (
