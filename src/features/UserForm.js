@@ -6,6 +6,7 @@ import {
   isValidName,
   isValidZipcode,
 } from "./UserFormService";
+import FormInput from "../components/FormInput";
 
 function UserForm() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ function UserForm() {
   });
 
   const [isFormComplete, setIsFormComplete] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,37 +29,43 @@ function UserForm() {
     });
   };
 
+  const handleValidation = () => {
+    const errors = {};
+
+    if (!isValidName(formData.firstName)) {
+      errors.firstName = "Votre prénom n'est pas dans un format valide.";
+    }
+
+    if (!isValidName(formData.lastName)) {
+      errors.lastName = "Votre nom n'est pas dans un format valide.";
+    }
+
+    if (!isValidEmail(formData.email)) {
+      errors.email = "Votre email n'est pas dans un format valide.";
+    }
+
+    if (isUnderage(formData.birthDate)) {
+      errors.birthDate = "Vous devez avoir au moins 18 ans pour vous inscrire.";
+    }
+
+    if (!isValidName(formData.city)) {
+      errors.city = "Votre ville n'est pas dans un format valide.";
+    }
+
+    if (!isValidZipcode(formData.zipCode)) {
+      errors.zipCode = "Votre code postal n'est pas dans un format valide.";
+    }
+
+    return errors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Données du formulaire :", formData);
 
-    if (!isValidName(formData.firstName)) {
-      alert("Votre prénom n'est pas dans un format valide.");
-      return;
-    }
-
-    if (!isValidName(formData.lastName)) {
-      alert("Votre nom n'est pas dans un format valide.");
-      return;
-    }
-
-    if (!isValidEmail(formData.email)) {
-      alert("Votre email n'est pas dans un format valide.");
-      return;
-    }
-
-    if (isUnderage(formData.birthDate)) {
-      alert("Vous devez avoir au moins 18 ans pour vous inscrire.");
-      return;
-    }
-
-    if (!isValidName(formData.city)) {
-      alert("Votre ville n'est pas dans un format valide.");
-      return;
-    }
-
-    if (!isValidZipcode(formData.zipCode)) {
-      alert("Votre code postal n'est pas dans un format valide.");
+    const validationErrors = handleValidation();
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
       return;
     }
 
@@ -86,60 +94,54 @@ function UserForm() {
     <div>
       <h2>Formulaire d'utilisateur</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nom :</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Prénom :</label>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Email :</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Date de naissance :</label>
-          <input
-            type="date"
-            name="birthDate"
-            value={formData.birthDate}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Ville :</label>
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Code postal :</label>
-          <input
-            type="text"
-            name="zipCode"
-            value={formData.zipCode}
-            onChange={handleChange}
-          />
-        </div>
+        <FormInput
+          label="Nom :"
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+          error={errors.lastName}
+        />
+        <FormInput
+          label="Prénom :"
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          error={errors.firstName}
+        />
+        <FormInput
+          label="Email :"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          error={errors.email}
+        />
+        <FormInput
+          label="Date de naissance :"
+          type="date"
+          name="birthDate"
+          value={formData.birthDate}
+          onChange={handleChange}
+          error={errors.birthDate}
+        />
+        <FormInput
+          label="Ville :"
+          type="text"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Code postal :"
+          type="text"
+          name="zipCode"
+          value={formData.zipCode}
+          onChange={handleChange}
+          error={errors.zipCode}
+        />
+
         <button type="submit" disabled={!isFormComplete}>
           Soumettre
         </button>
