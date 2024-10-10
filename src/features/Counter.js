@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+/**
+ * Counter component that increments a count value each time the button is clicked.
+ * @component
+ */
 function Counter() {
   let [count, setCount] = useState(0);
 
