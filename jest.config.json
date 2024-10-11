@@ -4,7 +4,8 @@
   "collectCoverageFrom": [
     "src/**/*.{js,jsx}",
     "!src/reportWebVitals.js",
-    "!src/index.js"
+    "!src/index.js",
+    "!src/logo.svg"
   ],
   "setupFiles": ["<rootDir>/.jest/setEnvVars.js"],
   "testMatch": ["src/**/*.test.js", "src/**/*.test.jsx"]
