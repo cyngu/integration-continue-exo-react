@@ -32,9 +32,10 @@ jobs:
           path: build
           if-no-files-found: error
       - name: Upload test results to Codecov
-        uses: codecov/test-results-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
