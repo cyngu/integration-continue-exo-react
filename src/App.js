@@ -2,8 +2,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import UserForm from "./features/UserForm";
-import Counter from "./features/Counter";
+import UserForm from "./features/userForm/UserForm";
+import Counter from "./features/counter/Counter";
 
 // TODO subscribers list
 
