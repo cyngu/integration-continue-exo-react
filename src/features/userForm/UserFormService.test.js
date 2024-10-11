@@ -8,13 +8,27 @@ import {
 describe("UserFormService", () => {
   describe("isUnderage", () => {
     it("should return true for a date of birth resulting in an age under 18", () => {
-      const birthDate = "2007-10-08"; // Exemple : 17 ans
-      expect(isUnderage(birthDate)).toBe(true);
+      const today = new Date();
+      const underageBirthDate = new Date(
+        today.getFullYear() - 17,
+        today.getMonth(),
+        today.getDate() + 1
+      )
+        .toISOString()
+        .split("T")[0];
+      expect(isUnderage(underageBirthDate)).toBe(true);
     });
 
     it("should return false for a date of birth resulting in an age 18 or over", () => {
-      const birthDate = "2005-10-08"; // Exemple : 18 ans
-      expect(isUnderage(birthDate)).toBe(false);
+      const today = new Date();
+      const adultBirthDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+      )
+        .toISOString()
+        .split("T")[0];
+      expect(isUnderage(adultBirthDate)).toBe(false);
     });
   });
 
