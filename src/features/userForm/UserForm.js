@@ -6,7 +6,7 @@ import {
   isValidName,
   isValidZipcode,
 } from "./UserFormService";
-import FormInput from "../components/FormInput";
+import FormInput from "../../components/FormInput";
 
 /**
  * UserForm component handles the form input and validation for user data.
