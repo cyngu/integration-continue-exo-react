@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "jsdoc": "jsdoc -c ./jsdoc.config.json -r -d ./docs"
+    "jsdoc": "jsdoc -c ./jsdoc.config.json -r -d ./docs",
+    "junit": "jest --reporters=jest-junit"
   },
   "eslintConfig": {
     "extends": [
