@@ -31,6 +31,8 @@ jobs:
         with:
           path: build
           if-no-files-found: error
+      - name: Run tests
+        run: npx jest --coverage
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
