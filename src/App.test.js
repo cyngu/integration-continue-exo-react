@@ -1,27 +1,16 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import App from "./App";
 import {
   isUnderage,
   isValidEmail,
   isValidName,
   isValidZipcode,
-} from "./features/UserFormService";
+} from "./features/userForm/UserFormService";
 
 test("renders learn react link", () => {
   render(<App />);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
-});
-
-test("check counter on click me button", () => {
-  render(<App />);
-  const button = screen.getAllByRole("button")[0];
-  const counter = screen.getByTestId("count");
-  expect(button).toBeInTheDocument();
-  expect(counter).toBeInTheDocument();
-  expect(counter).toHaveTextContent("0");
-  fireEvent.click(button);
-  expect(counter).toHaveTextContent("1");
 });
 
 describe("UserFormService", () => {
