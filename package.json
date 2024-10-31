@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
+  "name": "integration-continue-exo-react",
   "version": "0.1.0",
   "homepage": "https://cyngu.github.io/integration-continue-exo-react/",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-npm": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist --copy-files",
     "test": "react-scripts test --coverage --collectCoverageFrom=!src/reportWebVitals.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/logo.svg --watchAll=false",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -40,6 +41,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
     "@babel/preset-env": "^7.25.7",
     "@testing-library/react": "^16.0.1",
     "babel-jest": "^29.7.0",
