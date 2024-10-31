@@ -50,6 +50,7 @@ jobs:
       id-token: write
 
     steps:
+      - uses: actions/checkout@v2
       - name: build and publish package on NPM 📦
         run: |
           git config --global user.email "cyril.nguyen@ynov.com"
@@ -59,7 +60,6 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        uses: actions/checkout@v2
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v2
