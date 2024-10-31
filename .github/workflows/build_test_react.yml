@@ -50,10 +50,15 @@ jobs:
       id-token: write
 
     steps:
-      - name: Debugging - Check Current Directory and Files
+      - name: build and publish package on NPM 📦
         run: |
-          pwd
-          ls -la
+          git config --global user.email "cyril.nguyen@ynov.com"
+          git config --global user.name "cyngu"
+          npm run build-npm
+          npm version patch
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v2
