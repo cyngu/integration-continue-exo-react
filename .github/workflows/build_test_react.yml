@@ -50,10 +50,15 @@ jobs:
       id-token: write
 
     steps:
-      - name: Authenticate with npm
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-      - name: build and publish package on NPM 📦
+      - name: Debugging - Check Current Directory and Files
         run: |
+          pwd
+          ls -la
+      - name: build and publish package on NPM 📦
+        working-directory: /home/runner/work/integration-continue-exo-react
+        run: |
+          git config --global user.email "cyril.nguyen@ynov.com"
+          git config --global user.name "cyngu"
           npm run build-npm
           npm version patch
           npm publish
