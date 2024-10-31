@@ -40,7 +40,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build_test
-    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -55,7 +54,6 @@ jobs:
           pwd
           ls -la
       - name: build and publish package on NPM 📦
-        working-directory: /home/runner/work/integration-continue-exo-react
         run: |
           git config --global user.email "cyril.nguyen@ynov.com"
           git config --global user.name "cyngu"
