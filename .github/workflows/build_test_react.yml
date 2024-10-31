@@ -38,6 +38,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
   deploy:
+    working-directory: ./integration-continue-exo-react
     runs-on: ubuntu-latest
     needs: build_test
     if: github.ref == 'refs/heads/main'
