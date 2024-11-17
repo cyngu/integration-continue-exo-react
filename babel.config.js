@@ -3,5 +3,5 @@ module.exports = {
     "@babel/preset-env",
     ["@babel/preset-react", { runtime: "automatic" }],
   ],
-  plugins: ["@babel/plugin-syntax-dynamic-import"],
+  plugins: ["@babel/plugin-transform-react-jsx"],
 };
