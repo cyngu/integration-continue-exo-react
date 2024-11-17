@@ -4,24 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+var _webVitals = require("web-vitals");
 const reportWebVitals = onPerfEntry => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
-    Promise.resolve().then(() => _interopRequireWildcard(require('web-vitals'))).then(_ref => {
-      let {
-        getCLS,
-        getFID,
-        getFCP,
-        getLCP,
-        getTTFB
-      } = _ref;
-      getCLS(onPerfEntry);
-      getFID(onPerfEntry);
-      getFCP(onPerfEntry);
-      getLCP(onPerfEntry);
-      getTTFB(onPerfEntry);
-    });
+    (0, _webVitals.getCLS)(onPerfEntry);
+    (0, _webVitals.getFID)(onPerfEntry);
+    (0, _webVitals.getFCP)(onPerfEntry);
+    (0, _webVitals.getLCP)(onPerfEntry);
+    (0, _webVitals.getTTFB)(onPerfEntry);
   }
 };
 var _default = exports.default = reportWebVitals;

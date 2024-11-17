@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * FormInput component renders an input field with an optional error message.
@@ -17,7 +16,8 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
  * @param {string} props.value - The current value of the input field.
  * @param {Function} props.onChange - The function to call when the input value changes.
  * @param {string} [props.error] - Optional error message to display below the input field.
- */function FormInput(_ref) {
+ */
+function FormInput(_ref) {
   let {
     label,
     type,
@@ -26,22 +26,18 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
     onChange,
     error
   } = _ref;
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-      htmlFor: name,
-      children: label
-    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-      id: name,
-      type: type,
-      name: name,
-      value: value,
-      onChange: onChange
-    }), error && /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-      style: {
-        color: "red"
-      },
-      children: error
-    })]
-  });
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/_react.default.createElement("input", {
+    id: name,
+    type: type,
+    name: name,
+    value: value,
+    onChange: onChange
+  }), error && /*#__PURE__*/_react.default.createElement("p", {
+    style: {
+      color: "red"
+    }
+  }, error));
 }
 var _default = exports.default = FormInput;

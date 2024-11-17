@@ -3,12 +3,12 @@
 var _react = _interopRequireDefault(require("react"));
 var _react2 = require("@testing-library/react");
 var _UserForm = _interopRequireDefault(require("./UserForm"));
-var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Adjust the path as necessary
+
 describe("UserForm", () => {
   it("should submit form data and store it in localStorage", () => {
-    (0, _react2.render)(/*#__PURE__*/(0, _jsxRuntime.jsx)(_UserForm.default, {}));
+    (0, _react2.render)(/*#__PURE__*/_react.default.createElement(_UserForm.default, null));
 
     // Fill out the form using unique identifiers
     _react2.fireEvent.change(_react2.screen.getByLabelText("Nom :"), {

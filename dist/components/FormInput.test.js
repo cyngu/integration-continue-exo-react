@@ -3,14 +3,11 @@
 var _react = _interopRequireDefault(require("react"));
 var _react2 = require("@testing-library/react");
 var _FormInput = _interopRequireDefault(require("./FormInput"));
-var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 describe("FormInput", () => {
   const setup = function () {
     let props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    (0, _react2.render)(/*#__PURE__*/(0, _jsxRuntime.jsx)(_FormInput.default, {
-      ...props
-    }));
+    (0, _react2.render)(/*#__PURE__*/_react.default.createElement(_FormInput.default, props));
   };
   test("renders the input field with a label", () => {
     setup({
