@@ -32,6 +32,17 @@ describe("UserFormService", () => {
     });
   });
 
+  it("should return true for a person who will turn 18 in this year", () => {
+    const today = new Date();
+    const future18thBirthday = new Date(
+      today.getFullYear(),
+      today.getMonth() + 1,
+      today.getDate()
+    ).toISOString().split("T")[0];
+  
+    expect(isUnderage(future18thBirthday)).toBe(true);
+  });
+
   describe("isValidEmail", () => {
     it("should return true for valid email formats", () => {
       expect(isValidEmail("test@example.com")).toBe(true);

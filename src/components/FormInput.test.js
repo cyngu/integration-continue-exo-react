@@ -16,11 +16,9 @@ describe("FormInput", () => {
       onChange: jest.fn(),
     });
 
-    // Vérifie si le label est affiché
     const labelElement = screen.getByText(/Email/i);
     expect(labelElement).toBeInTheDocument();
 
-    // Vérifie si le champ d'entrée est affiché
     const inputElement = screen.getByRole("textbox", { name: /Email/i });
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("type", "email");

@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
+test("renders the UserForm component", () => {
   render(<App />);
+  
+  const userFormElement = screen.getByTestId("user-form");
+  expect(userFormElement).toBeInTheDocument();
 });

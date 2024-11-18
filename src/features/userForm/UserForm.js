@@ -78,7 +78,6 @@ function UserForm() {
    */
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Données du formulaire :", formData);
 
     const validationErrors = handleValidation();
     setErrors(validationErrors);
@@ -113,7 +112,7 @@ function UserForm() {
   }, [formData]);
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg" data-testid="user-form">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">
         Formulaire d'utilisateur
       </h2>

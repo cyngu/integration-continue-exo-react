@@ -76,7 +76,6 @@ function UserForm() {
    */
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("Données du formulaire :", formData);
     const validationErrors = handleValidation();
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) {

@@ -6,12 +6,15 @@
 export const isUnderage = (birthDate) => {
   const today = new Date();
   const birth = new Date(birthDate);
-  const age = today.getFullYear() - birth.getFullYear();
-  const monthDiff = today.getMonth() - birth.getMonth();
+  let age = today.getFullYear() - birth.getFullYear();
 
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-    return age < 18;
+  const monthDiff = today.getMonth() - birth.getMonth();
+  const dayDiff = today.getDate() - birth.getDate();
+
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    age--;
   }
+
   return age < 18;
 };
 
