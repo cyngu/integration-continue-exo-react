@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: src/components/FormInput.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,52 +17,48 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: src/components/FormInput.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>DEPLOYMENT AND INTEGRATION</h1>
-<h2>FRONTEND</h2>
-<h3>INSTALLATION</h3>
-<ul>
-<li>Clone the repository</li>
-<li>Execute the command <code>npm install</code> to install all needed packages</li>
-<li>Run the application with <code>npm run start</code></li>
-</ul>
-<h3>PUBLISH NPM PACKAGE</h3>
-<p>To publish a new version of the package, execute the following command <code>npm version &lt;update_type&gt;</code> and push/merge in the <code>main</code> branch for the pipeline to publish.</p>
-<h3>GITHUB PAGES</h3>
-<p>The application is deployed on github pages : https://cyngu.github.io/integration-continue-exo-react/</p>
-<h3>JSDOC</h3>
-<p>The application has a documentation for frontend component : https://cyngu.github.io/integration-continue-exo-react/docs/</p>
-<h3>CODE COVERAGE</h3>
-<p>To see the coverage of the source files : https://app.codecov.io/github/cyngu/integration-continue-exo-react/tree/main/src
-<img src="image.png" alt="Code coverage image"></p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+
+/**
+ * FormInput component renders an input field with an optional error message.
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.label - The label text for the input field.
+ * @param {string} props.type - The type of the input field (e.g., "text", "email", "date").
+ * @param {string} props.name - The name attribute for the input field.
+ * @param {string} props.value - The current value of the input field.
+ * @param {Function} props.onChange - The function to call when the input value changes.
+ * @param {string} [props.error] - Optional error message to display below the input field.
+ */
+function FormInput({ label, type, name, value, onChange, error }) {
+  return (
+    &lt;div>
+      &lt;label htmlFor={name}>{label}&lt;/label>
+      &lt;input
+        id={name}
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+      {error &amp;&amp; &lt;p style={{ color: "red" }}>{error}&lt;/p>}
+    &lt;/div>
+  );
+}
+
+export default FormInput;
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
