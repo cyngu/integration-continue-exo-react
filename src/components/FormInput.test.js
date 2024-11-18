@@ -38,6 +38,6 @@ describe("FormInput", () => {
 
     const errorElement = screen.getByText(/Invalid email address/i);
     expect(errorElement).toBeInTheDocument();
-    expect(errorElement).toHaveStyle({ color: "red" });
+    expect(errorElement).toHaveClass("text-sm text-red-500 mt-1");
   });
 });
