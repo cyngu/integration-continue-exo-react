@@ -83,7 +83,6 @@ function UserForm() {
     const validationErrors = handleValidation();
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) {
-      toast.error("Certaines données ne sont pas dans le correct format !");
       return;
     }
 
