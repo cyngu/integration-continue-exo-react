@@ -18,7 +18,8 @@ The application is deployed on github pages : https://cyngu.github.io/integratio
 
 ### JSDOC
 
-The application has a documentation for frontend component : https://cyngu.github.io/integration-continue-exo-react/docs/
+The application has a documentation for frontend component in local : http://localhost:3000/integration-continue-exo-react/docs/
+To generate documentation run the command : `npm run jsdoc`
 
 ### CODE COVERAGE
 
