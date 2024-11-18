@@ -11,18 +11,28 @@ import React from "react";
  * @param {Function} props.onChange - The function to call when the input value changes.
  * @param {string} [props.error] - Optional error message to display below the input field.
  */
-function FormInput({ label, type, name, value, onChange, error }) {
+function FormInput({ label, type, name, value, required, onChange, error }) {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
+    <div className="mb-4">
+      <label
+        htmlFor={name}
+        className={`block text-sm font-medium text-gray-700 mb-1 ${
+          required ? "after:content-['*'] after:text-red-500" : ""
+        }`}
+      >
+        {label}
+      </label>
       <input
         id={name}
         type={type}
         name={name}
         value={value}
         onChange={onChange}
+        className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+          error ? "border-red-500" : "border-gray-300"
+        }`}
       />
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
     </div>
   );
 }
