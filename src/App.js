@@ -1,26 +1,42 @@
+import logo from "./logo.svg";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./features/userForm/UserForm";
+import Counter from "./features/counter/Counter";
 
 // TODO subscribers list
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-900">
-      <div className="w-full max-w-lg p-4">
+    <div className="">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+
+        <Counter />
         <UserForm />
-      </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        pauseOnFocusLoss
-        theme="colored"
-      />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          pauseOnFocusLoss
+          theme="colored"
+        />
+      </header>
     </div>
   );
 }
