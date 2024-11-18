@@ -7,22 +7,22 @@ describe("UserForm", () => {
     render(<UserForm />);
 
     // Fill out the form using unique identifiers
-    fireEvent.change(screen.getByLabelText("Nom :"), {
+    fireEvent.change(screen.getByLabelText("Nom"), {
       target: { value: "Doe" },
     });
-    fireEvent.change(screen.getByLabelText("Prénom :"), {
+    fireEvent.change(screen.getByLabelText("Prénom"), {
       target: { value: "John" },
     });
-    fireEvent.change(screen.getByLabelText("Email :"), {
+    fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john.doe@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Date de naissance :"), {
+    fireEvent.change(screen.getByLabelText("Date de naissance"), {
       target: { value: "2000-01-01" },
     });
-    fireEvent.change(screen.getByLabelText("Ville :"), {
+    fireEvent.change(screen.getByLabelText("Ville"), {
       target: { value: "Paris" },
     });
-    fireEvent.change(screen.getByLabelText("Code postal :"), {
+    fireEvent.change(screen.getByLabelText("Code postal"), {
       target: { value: "75001" },
     });
 
