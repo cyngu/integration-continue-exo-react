@@ -1,12 +1,6 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
   mongodb:
     image: mongo:latest
     environment:
@@ -16,15 +10,23 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - app-network
 
   backend:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - mongodb
+    networks:
+      - app-network
 
 volumes:
   mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge
