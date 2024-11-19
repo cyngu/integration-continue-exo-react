@@ -1,9 +1,9 @@
 name: Build and Test React Application
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
   build_test:
