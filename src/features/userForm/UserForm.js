@@ -81,9 +81,7 @@ function UserForm() {
 
             toast.success("Utilisateur créé avec succès !");
         } catch (error) {
-            toast.error(
-                error.message || "Une erreur est survenue lors de la création de l'utilisateur"
-            );
+            toast.error("Une erreur est survenue lors de la création de l'utilisateur");
         } finally {
             setIsSubmitting(false);
         }
