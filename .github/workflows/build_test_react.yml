@@ -29,7 +29,7 @@ jobs:
       - name: Run e2e tests with cypress
         uses: cypress-io/github-action@v6
       - name: Stop the stack
-        run: docker-compose down
+        run: docker compose down
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
