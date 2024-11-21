@@ -1,9 +1,9 @@
 name: Build and Test React Application
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
   build_test:
@@ -24,6 +24,8 @@ jobs:
           npm run build --if-present
           npm test
           npm run jsdoc
+      - name: Build the stack react
+        run: docker compose up -d
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
