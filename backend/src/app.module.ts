@@ -11,7 +11,7 @@ import { UsersModule } from './users/users.module';
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : undefined,
     }),
-    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://root:password@localhost:27017/admin'),
+    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://root:password@localhost:27017/ynov-ci?authSource=admin'),
     UsersModule,
   ],
   controllers: [AppController],
