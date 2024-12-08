@@ -27,9 +27,7 @@ export class AuthController {
   @Post('signup')
   @HttpCode(HttpStatus.OK)
   async signup(@Body() user: User, @Res() res: Response) {
-    const newUser = await this.authService.signup(user);
-    
-    const payload = { name: newUser.name, firstname: newUser.firstname };
+    const payload = await this.authService.signup(user);
     const token = await this.authService.generateJwt(payload);
 
     res.setHeader('Authorization', `Bearer ${token}`);
