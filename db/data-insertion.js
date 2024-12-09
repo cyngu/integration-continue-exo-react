@@ -17,9 +17,10 @@ db.users.insertOne({
   name: "fenoll",
   firstname: "loise",
   email: "loise.fenoll@ynov.com",
-  password: "ANKymoUTFu4rbybmQ9Mt",
+  // password: "ANKymoUTFu4rbybmQ9Mt",
+  password: "$2y$10$nAu77dNUfmDtWDARTPRESu4jeDzHRVJiQOhBOHo.zQOQs1T9qCXOS", // TODO make a function to hash password
   birthDate: "1990-01-01T00:00:00.000Z",
   city: "Paris",
   zipcode: "75001",
-  roleId: adminRole._id
+  role: adminRole._id
 });
