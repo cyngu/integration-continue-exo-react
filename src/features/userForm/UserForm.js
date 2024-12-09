@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import {
   isUnderage,
   isValidEmail,
   isValidName,
   isValidZipcode,
 } from "./UserFormService";
+import { UserApiService } from "../../services/UserApiService";
 import FormInput from "../../components/FormInput";
 
-/**
- * UserForm component handles the form input and validation for user data.
- * It stores form data saves data in the local storage.
- * @component
- */
 function UserForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    name: "",
     email: "",
+    password: "",
     birthDate: "",
     city: "",
-    zipCode: "",
+    zipcode: "",
   });
 
   const [isFormComplete, setIsFormComplete] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  /**
-   * Handles form input changes and updates.
-   * @param {Object} e - The event object from the input field.
-   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -38,23 +34,23 @@ function UserForm() {
     });
   };
 
-  /**
-   * Validates the form data fields and returns an object with validation errors.
-   * @returns {Object} errors - An object containing validation error messages for each field.
-   */
   const handleValidation = () => {
     const errors = {};
 
-    if (!isValidName(formData.firstName)) {
-      errors.firstName = "Votre prénom n'est pas dans un format valide.";
+    if (!isValidName(formData.name)) {
+      errors.name = "Votre nom n'est pas dans un format valide.";
     }
 
-    if (!isValidName(formData.lastName)) {
-      errors.lastName = "Votre nom n'est pas dans un format valide.";
+    if (!isValidName(formData.firstname)) {
+      errors.firstname = "Votre prénom n'est pas dans un format valide.";
     }
 
     if (!isValidEmail(formData.email)) {
       errors.email = "Votre email n'est pas dans un format valide.";
+    }
+
+    if (!formData.password || formData.password.length < 6) {
+      errors.password = "Le mot de passe doit contenir au moins 6 caractères.";
     }
 
     if (isUnderage(formData.birthDate)) {
@@ -65,45 +61,42 @@ function UserForm() {
       errors.city = "Votre ville n'est pas dans un format valide.";
     }
 
-    if (!isValidZipcode(formData.zipCode)) {
-      errors.zipCode = "Votre code postal n'est pas dans un format valide.";
+    if (!isValidZipcode(formData.zipcode)) {
+      errors.zipcode = "Votre code postal n'est pas dans un format valide.";
     }
 
     return errors;
   };
 
-  /**
-   * Handles form submission, validates form data, stores it in localStorage if valid, and clears the form.
-   * @param {Object} e - The event object from the form submission.
-   */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = handleValidation();
     setErrors(validationErrors);
+    
     if (Object.keys(validationErrors).length > 0) {
       toast.error("Certaines données n'ont pas le correct format !");
       return;
     }
 
-    localStorage.setItem("formData", JSON.stringify(formData));
+    setIsLoading(true);
 
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      birthDate: "",
-      city: "",
-      zipCode: "",
-    });
+    try {
+      await UserApiService.registerUser({
+        ...formData,
+        birthDate: new Date(formData.birthDate).toISOString(),
+      });
 
-    toast.success("Données enregistrées dans le localStorage !");
+      toast.success("Inscription réussie !");
+      navigate('/users');
+
+    } catch (error) {
+      toast.error(error.message || "Erreur lors de l'inscription");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  /**
-   * useEffect hook that checks if the form is complete by verifying if all fields are filled.
-   * Updates the `isFormComplete` state.
-   */
   useEffect(() => {
     const isComplete = Object.values(formData).every(
       (field) => field.trim() !== ""
@@ -114,25 +107,25 @@ function UserForm() {
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg" data-testid="user-form">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Formulaire d'utilisateur
+        Formulaire d'inscription
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <FormInput
           label="Nom"
           type="text"
-          name="lastName"
-          value={formData.lastName}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
-          error={errors.lastName}
+          error={errors.name}
           className="w-full"
         />
         <FormInput
           label="Prénom"
           type="text"
-          name="firstName"
-          value={formData.firstName}
+          name="firstname"
+          value={formData.firstname}
           onChange={handleChange}
-          error={errors.firstName}
+          error={errors.firstname}
           className="w-full"
         />
         <FormInput
@@ -142,6 +135,15 @@ function UserForm() {
           value={formData.email}
           onChange={handleChange}
           error={errors.email}
+          className="w-full"
+        />
+        <FormInput
+          label="Mot de passe"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          error={errors.password}
           className="w-full"
         />
         <FormInput
@@ -165,21 +167,23 @@ function UserForm() {
         <FormInput
           label="Code postal"
           type="text"
-          name="zipCode"
-          value={formData.zipCode}
+          name="zipcode"
+          value={formData.zipcode}
           onChange={handleChange}
-          error={errors.zipCode}
+          error={errors.zipcode}
           className="w-full"
         />
 
         <button
           type="submit"
           className={`w-full py-2 px-4 rounded-lg text-white ${
-            isFormComplete ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-300"
+            isFormComplete && !isLoading 
+              ? "bg-blue-500 hover:bg-blue-600" 
+              : "bg-gray-300"
           }`}
-          disabled={!isFormComplete}
+          disabled={!isFormComplete || isLoading}
         >
-          Soumettre
+          {isLoading ? "Inscription en cours..." : "S'inscrire"}
         </button>
       </form>
     </div>
