@@ -23,7 +23,7 @@ export const UserApiService = {
   
     async getAllUsers() {
       try {
-        const response = await fetch('http://localhost:3000/users');
+        const response = await fetch('http://localhost:8000/users');
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }
