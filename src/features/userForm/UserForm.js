@@ -82,13 +82,19 @@ function UserForm() {
     setIsLoading(true);
 
     try {
-      await UserApiService.registerUser({
+      const userData = {
         ...formData,
         birthDate: new Date(formData.birthDate).toISOString(),
-      });
+      };
 
+      // Register and auto-login
+      await UserApiService.registerUser(userData);
+      
+      // Fetch users list immediately after successful registration
+      const users = await UserApiService.getAllUsers();
+      
       toast.success("Inscription réussie !");
-      navigate('/users');
+      navigate('/integration-continue-exo-react/users', { state: { users } });
 
     } catch (error) {
       toast.error(error.message || "Erreur lors de l'inscription");
