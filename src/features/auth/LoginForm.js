@@ -17,7 +17,6 @@ function LoginForm() {
         setIsLoading(true);
         try {
             const response = await AuthService.login(formData.email, formData.password);
-            console.log('Login response:', response);
             toast.success('Connexion réussie !');
             navigate('/integration-continue-exo-react/users');
         } catch (error) {
