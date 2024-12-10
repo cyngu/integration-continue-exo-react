@@ -1,7 +1,7 @@
 export const AuthService = {
   async login(email, password) {
     try {
-      const response = await fetch('http://localhost:8000/auth/login', {
+      const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const AuthService = {
 
   async logout() {
     try {
-      await fetch('http://localhost:8000/auth/logout', {
+      await fetch('http://localhost:3000/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });
