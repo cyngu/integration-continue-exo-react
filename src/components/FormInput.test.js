@@ -19,7 +19,7 @@ describe("FormInput", () => {
     const labelElement = screen.getByText(/Email/i);
     expect(labelElement).toBeInTheDocument();
 
-    const inputElement = screen.getByRole("textbox", { name: /Email/i });
+    const inputElement = screen.getByRole("textbox", {name: /Email/i});
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("type", "email");
   });
