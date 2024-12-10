@@ -53,7 +53,6 @@ describe("UserFormService", () => {
       expect(isValidEmail("plainaddress")).toBe(false);
       expect(isValidEmail("@missingusername.com")).toBe(false);
       expect(isValidEmail("test@.com")).toBe(false);
-      // expect(isValidEmail("test@domain..com")).toBe(false);
     });
   });
 

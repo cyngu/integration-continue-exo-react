@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import UserForm from "./UserForm"; // Adjust the path as necessary
+import UserForm from "./UserForm";
 import { toast } from "react-toastify";
 
 jest.mock("react-toastify", () => ({

@@ -24,9 +24,12 @@ export class UsersService {
       throw new ConflictException('Email d\'utilisateur déjà pris');
     }
 
-    const defaultRole = await this.roleModel.findOne({ name: 'employee' });
+    let defaultRole = await this.roleModel.findOne({ name: 'employee' });
     if (!defaultRole) {
-      throw new NotFoundException('Le rôle "employee" par défaut est introuvable');
+      defaultRole = await this.roleModel.create({
+        name: 'employee',
+        permissions: []
+      });
     }
 
     user.role = defaultRole._id as Types.ObjectId;
@@ -40,7 +43,6 @@ export class UsersService {
     return bcrypt.compare(password, user.password);
   }
 
-  // Récupérer tous les utilisateurs
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }
