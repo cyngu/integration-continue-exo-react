@@ -4,6 +4,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./features/userForm/UserForm";
 import UsersList from "./pages/UsersList";
+import LoginForm from "./features/auth/LoginForm";
+import ProtectedRoute from './components/ProtectedRoute';
+
 
 function App() {
   return (
@@ -12,7 +15,16 @@ function App() {
         <div className="w-full max-w-lg p-4">
           <Routes>
             <Route path="/integration-continue-exo-react" element={<UserForm />} />
+            <Route path="/integration-continue-exo-react/login" element={<LoginForm />} />
             <Route path="/integration-continue-exo-react/users" element={<UsersList />} />
+            <Route
+                path="/integration-continue-exo-react/users"
+                element={
+                  <ProtectedRoute>
+                    <UsersList />
+                  </ProtectedRoute>
+                }
+            />
           </Routes>
         </div>
         <ToastContainer

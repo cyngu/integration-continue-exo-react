@@ -1,7 +1,7 @@
 export const AuthService = {
   async login(email, password) {
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -9,13 +9,15 @@ export const AuthService = {
         credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
-
+      const data = await response.json();
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message);
+        throw new Error(data.message || 'Login failed');
       }
 
-      return await response.json();
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+      return data;
     } catch (error) {
       throw new Error('Login failed: ' + error.message);
     }
@@ -39,55 +41,22 @@ export const AuthService = {
 
   async logout() {
     try {
-      await fetch('/api/auth/logout', {
+      await fetch('http://localhost:8000/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });
+
+      localStorage.removeItem('token');
     } catch (error) {
       throw new Error('Logout failed');
     }
-  }
-};
-
-// Update UserApiService.js
-export const UserApiService = {
-  async registerUser(userData) {
-    try {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(userData),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message);
-      }
-
-      // After successful registration, log in automatically
-      const loginResponse = await AuthService.login(userData.email, userData.password);
-      return loginResponse;
-    } catch (error) {
-      throw new Error(error.message || 'Registration failed');
-    }
   },
 
-  async getAllUsers() {
-    try {
-      const response = await fetch('/api/users', {
-        credentials: 'include',
-      });
+  getToken() {
+    return localStorage.getItem('token');
+  },
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch users');
-      }
-
-      return await response.json();
-    } catch (error) {
-      throw new Error('Failed to fetch users: ' + error.message);
-    }
+  isAuthenticated() {
+    return !!this.getToken();
   }
 };

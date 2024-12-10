@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   isUnderage,
   isValidEmail,
@@ -87,10 +87,8 @@ function UserForm() {
         birthDate: new Date(formData.birthDate).toISOString(),
       };
 
-      // Register and auto-login
       await UserApiService.registerUser(userData);
       
-      // Fetch users list immediately after successful registration
       const users = await UserApiService.getAllUsers();
       
       toast.success("Inscription réussie !");
@@ -111,88 +109,96 @@ function UserForm() {
   }, [formData]);
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg" data-testid="user-form">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Formulaire d'inscription
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <FormInput
-          label="Nom"
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          error={errors.name}
-          className="w-full"
-        />
-        <FormInput
-          label="Prénom"
-          type="text"
-          name="firstname"
-          value={formData.firstname}
-          onChange={handleChange}
-          error={errors.firstname}
-          className="w-full"
-        />
-        <FormInput
-          label="Email"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          error={errors.email}
-          className="w-full"
-        />
-        <FormInput
-          label="Mot de passe"
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          error={errors.password}
-          className="w-full"
-        />
-        <FormInput
-          label="Date de naissance"
-          type="date"
-          name="birthDate"
-          value={formData.birthDate}
-          onChange={handleChange}
-          error={errors.birthDate}
-          className="w-full"
-        />
-        <FormInput
-          label="Ville"
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          error={errors.city}
-          className="w-full"
-        />
-        <FormInput
-          label="Code postal"
-          type="text"
-          name="zipcode"
-          value={formData.zipcode}
-          onChange={handleChange}
-          error={errors.zipcode}
-          className="w-full"
-        />
+      <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg" data-testid="user-form">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+          Formulaire d'inscription
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <FormInput
+              label="Nom"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              error={errors.name}
+              className="w-full"
+          />
+          <FormInput
+              label="Prénom"
+              type="text"
+              name="firstname"
+              value={formData.firstname}
+              onChange={handleChange}
+              error={errors.firstname}
+              className="w-full"
+          />
+          <FormInput
+              label="Email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+              className="w-full"
+          />
+          <FormInput
+              label="Mot de passe"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={errors.password}
+              className="w-full"
+          />
+          <FormInput
+              label="Date de naissance"
+              type="date"
+              name="birthDate"
+              value={formData.birthDate}
+              onChange={handleChange}
+              error={errors.birthDate}
+              className="w-full"
+          />
+          <FormInput
+              label="Ville"
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              error={errors.city}
+              className="w-full"
+          />
+          <FormInput
+              label="Code postal"
+              type="text"
+              name="zipcode"
+              value={formData.zipcode}
+              onChange={handleChange}
+              error={errors.zipcode}
+              className="w-full"
+          />
 
-        <button
-          type="submit"
-          className={`w-full py-2 px-4 rounded-lg text-white ${
-            isFormComplete && !isLoading 
-              ? "bg-blue-500 hover:bg-blue-600" 
-              : "bg-gray-300"
-          }`}
-          disabled={!isFormComplete || isLoading}
-        >
-          {isLoading ? "Inscription en cours..." : "S'inscrire"}
-        </button>
-      </form>
-    </div>
+          <button
+              type="submit"
+              className={`w-full py-2 px-4 rounded-lg text-white ${
+                  isFormComplete && !isLoading
+                      ? "bg-blue-500 hover:bg-blue-600"
+                      : "bg-gray-300"
+              }`}
+              disabled={!isFormComplete || isLoading}
+          >
+            {isLoading ? "Inscription en cours..." : "S'inscrire"}
+          </button>
+        </form>
+        <div className="mt-6 text-center">
+          <Link
+              to="/integration-continue-exo-react/login"
+              className="text-blue-500 hover:text-blue-700 text-sm"
+          >
+            Déjà un compte ? Connectez-vous ici
+          </Link>
+        </div>
+      </div>
   );
 }
 

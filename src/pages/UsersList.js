@@ -1,4 +1,3 @@
-// src/pages/UsersList.jsx
 import React, { useState, useEffect } from 'react';
 import { UserApiService } from '../services/UserApiService';
 import { AuthService } from '../services/AuthService';
@@ -28,9 +27,10 @@ function UsersList() {
   const handleLogout = async () => {
     try {
       await AuthService.logout();
-      navigate('/login');
+      navigate('/integration-continue-exo-react');
     } catch (error) {
       console.error('Logout failed:', error);
+      toast.error('Logout failed');
     }
   };
 
