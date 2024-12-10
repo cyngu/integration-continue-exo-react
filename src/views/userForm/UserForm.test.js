@@ -4,7 +4,7 @@ import UserForm from "./UserForm";
 
 
 const mockRegisterUser = jest.fn();
-jest.mock('../../services/UserApiService', () => ({
+jest.mock('../../api/UserApiService', () => ({
     UserApiService: {
         registerUser: (...args) => mockRegisterUser(...args)
     }

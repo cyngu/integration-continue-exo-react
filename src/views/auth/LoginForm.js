@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AuthService } from '../../services/AuthService';
+import { AuthApiService } from '../../api/AuthApiService';
 import FormInput from '../../components/FormInput';
 
 function LoginForm() {
@@ -16,7 +16,7 @@ function LoginForm() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            await AuthService.login(formData.email, formData.password);
+            await AuthApiService.login(formData.email, formData.password);
             toast.success('Connexion réussie !');
             navigate('/integration-continue-exo-react/users');
         } catch (error) {

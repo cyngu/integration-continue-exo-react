@@ -1,17 +1,14 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { JwtModule } from '@nestjs/jwt';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
-import { User, UserSchema } from './users.schema';
-import { Role, RoleSchema } from '../roles/roles.schema';
+import {Module} from '@nestjs/common';
+import {MongooseModule} from '@nestjs/mongoose';
+import {UsersController} from './users.controller';
+import {UsersService} from './users.service';
+import {User, UserSchema} from './users.schema';
+import {RolesModule} from "../roles/roles.module";
 
 @Module({
     imports: [
-        MongooseModule.forFeature([
-            { name: User.name, schema: UserSchema },
-            { name: Role.name, schema: RoleSchema }
-        ]),
+        RolesModule,
+        MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     ],
     controllers: [UsersController],
     providers: [UsersService],

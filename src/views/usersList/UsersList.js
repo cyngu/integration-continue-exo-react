@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { UserApiService } from '../services/UserApiService';
-import { AuthService } from '../services/AuthService';
+import { UserApiService } from '../../api/UserApiService';
+import { AuthApiService } from '../../api/AuthApiService';
 import { useNavigate } from 'react-router-dom';
 import {toast} from "react-toastify";
 
@@ -27,7 +27,7 @@ function UsersList() {
 
   const handleLogout = async () => {
     try {
-      await AuthService.logout();
+      await AuthApiService.logout();
       navigate('/integration-continue-exo-react');
     } catch (error) {
       console.error('Logout failed:', error);
