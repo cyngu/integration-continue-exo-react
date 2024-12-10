@@ -12,10 +12,6 @@ import { Role, RoleSchema } from '../roles/roles.schema';
             { name: User.name, schema: UserSchema },
             { name: Role.name, schema: RoleSchema }
         ]),
-        JwtModule.register({
-            secret: 'secretKey',
-            signOptions: { expiresIn: '60m' },
-        }),
     ],
     controllers: [UsersController],
     providers: [UsersService],
