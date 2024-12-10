@@ -14,8 +14,6 @@ export class AuthController {
     const token = await this.authService.generateJwt(payload);
 
     res.setHeader('Authorization', `Bearer ${token}`);
-
-    res.setHeader('Authorization', `Bearer ${token}`);
     return res.json({
       token,
       user: payload
