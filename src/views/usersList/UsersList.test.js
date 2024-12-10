@@ -6,7 +6,7 @@ const mockGetAllUsers = jest.fn();
 const mockLogout = jest.fn();
 const mockNavigate = jest.fn();
 
-jest.mock('../services/UserApiService', () => ({
+jest.mock('../../api/UserApiService', () => ({
     UserApiService: {
         getAllUsers: () => mockGetAllUsers()
     }
@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockNavigate
 }));
 
-jest.mock('../services/AuthService', () => ({
+jest.mock('../../api/AuthApiService', () => ({
     AuthService: {
         logout: () => mockLogout()
     }
