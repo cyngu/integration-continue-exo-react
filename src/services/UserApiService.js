@@ -3,7 +3,7 @@ import {AuthService} from "./AuthService";
 export const UserApiService = {
   async registerUser(userData) {
     try {
-      const response = await fetch('http://localhost:8000/users', {
+      const response = await fetch('http://localhost:3000/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export const UserApiService = {
   async getAllUsers() {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/users', {
+      const response = await fetch('http://localhost:3000/users', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
