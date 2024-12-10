@@ -11,7 +11,7 @@ import React from "react";
  * @param {Function} props.onChange - The function to call when the input value changes.
  * @param {string} [props.error] - Optional error message to display below the input field.
  */
-function FormInput({ label, type, name, value, onChange, error }) {
+function FormInput({label, type, name, value, onChange, error}) {
   return (
     <div className="mb-4">
       <label

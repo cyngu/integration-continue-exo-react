@@ -7,7 +7,7 @@ export const AuthApiService = {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({email, password}),
       });
       const data = await response.json();
       if (!response.ok) {
@@ -28,7 +28,7 @@ export const AuthApiService = {
       const response = await fetch('/api/auth/me', {
         credentials: 'include',
       });
-      
+
       if (!response.ok) {
         throw new Error('Failed to get current user');
       }
