@@ -15,7 +15,11 @@ export class AuthController {
 
     res.setHeader('Authorization', `Bearer ${token}`);
 
-    return res.send();
+    res.setHeader('Authorization', `Bearer ${token}`);
+    return res.json({
+      token,
+      user: payload
+    });
   }
 
   @Post('logout')
@@ -30,7 +34,7 @@ export class AuthController {
     const token = await this.authService.generateJwt(payload);
 
     res.setHeader('Authorization', `Bearer ${token}`);
-    
+
     return res.send();
   }
 }
