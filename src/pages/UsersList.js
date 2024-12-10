@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserApiService } from '../services/UserApiService';
 import { AuthService } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
