@@ -1,4 +1,4 @@
-import {AuthService} from "./AuthService";
+import {AuthApiService} from "./AuthApiService";
 
 export const UserApiService = {
   async registerUser(userData) {
@@ -16,7 +16,7 @@ export const UserApiService = {
         throw new Error(error.message);
       }
 
-      const loginResponse = await AuthService.login(userData.email, userData.password);
+      const loginResponse = await AuthApiService.login(userData.email, userData.password);
 
       if (loginResponse.token) {
         localStorage.setItem('token', loginResponse.token);
