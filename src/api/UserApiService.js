@@ -1,4 +1,4 @@
-import {AuthApiService} from "./AuthApiService";
+import { AuthApiService } from "./AuthApiService";
 
 export const UserApiService = {
   async registerUser(userData) {

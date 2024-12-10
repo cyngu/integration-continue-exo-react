@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./views/userForm/UserForm";
@@ -14,16 +14,16 @@ function App() {
       <div className="min-h-screen flex items-center justify-center bg-blue-900">
         <div className="w-full max-w-lg p-4">
           <Routes>
-            <Route path="/integration-continue-exo-react" element={<UserForm />} />
-            <Route path="/integration-continue-exo-react/login" element={<LoginForm />} />
-            <Route path="/integration-continue-exo-react/users" element={<UsersList />} />
+            <Route path="/integration-continue-exo-react" element={<UserForm/>}/>
+            <Route path="/integration-continue-exo-react/login" element={<LoginForm/>}/>
+            <Route path="/integration-continue-exo-react/users" element={<UsersList/>}/>
             <Route
-                path="/integration-continue-exo-react/users"
-                element={
-                  <ProtectedRoute>
-                    <UsersList />
-                  </ProtectedRoute>
-                }
+              path="/integration-continue-exo-react/users"
+              element={
+                <ProtectedRoute>
+                  <UsersList/>
+                </ProtectedRoute>
+              }
             />
           </Routes>
         </div>

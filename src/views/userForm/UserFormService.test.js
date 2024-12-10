@@ -1,9 +1,4 @@
-import {
-  isUnderage,
-  isValidEmail,
-  isValidName,
-  isValidZipcode,
-} from "./UserFormService";
+import { isUnderage, isValidEmail, isValidName, isValidZipcode, } from "./UserFormService";
 
 describe("UserFormService", () => {
   describe("isUnderage", () => {
@@ -39,7 +34,7 @@ describe("UserFormService", () => {
       today.getMonth() + 1,
       today.getDate()
     ).toISOString().split("T")[0];
-  
+
     expect(isUnderage(future18thBirthday)).toBe(true);
   });
 
