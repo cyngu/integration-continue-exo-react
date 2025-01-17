@@ -2,10 +2,6 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UsersList from './UsersList';
 
-const mockGetAllUsers = jest.fn();
-const mockLogout = jest.fn();
-const mockNavigate = jest.fn();
-
 jest.mock('../../api/UserApiService', () => ({
   UserApiService: {
     getAllUsers: () => mockGetAllUsers()
@@ -17,25 +13,28 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../../api/AuthApiService', () => ({
-  AuthService: {
+  AuthApiService: {
     logout: () => mockLogout()
   }
 }));
+
+// Variable declarations after mocks
+const mockGetAllUsers = jest.fn();
+const mockLogout = jest.fn();
+const mockNavigate = jest.fn();
 
 describe('UsersList', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockGetAllUsers.mockResolvedValue([]);
+    mockLogout.mockResolvedValue();
   });
 
   it('renders loading state initially', async () => {
-    mockGetAllUsers.mockImplementation(() => new Promise(() => {
-    }));
-
+    mockGetAllUsers.mockImplementation(() => new Promise(() => {}));
     await act(async () => {
       render(<UsersList/>);
     });
-
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
   });
 
@@ -50,11 +49,8 @@ describe('UsersList', () => {
         zipcode: '75001'
       }
     ];
-
     mockGetAllUsers.mockResolvedValueOnce(mockUsers);
-
     render(<UsersList/>);
-
     await waitFor(() => {
       expect(screen.getByText('John')).toBeInTheDocument();
       expect(screen.getByText('Doe')).toBeInTheDocument();
@@ -67,9 +63,7 @@ describe('UsersList', () => {
   it('renders error state when fetch fails', async () => {
     const errorMessage = 'Failed to fetch users';
     mockGetAllUsers.mockRejectedValueOnce(new Error(errorMessage));
-
     render(<UsersList/>);
-
     await waitFor(() => {
       expect(screen.getByText(errorMessage)).toBeInTheDocument();
     });
@@ -77,13 +71,20 @@ describe('UsersList', () => {
 
   it('handles logout', async () => {
     mockGetAllUsers.mockResolvedValueOnce([]);
-
     render(<UsersList/>);
 
-    const logoutButton = await screen.findByText(/Déconnexion/i);
-    await userEvent.click(logoutButton);
+    await waitFor(() => {
+      expect(screen.queryByText(/Loading.../i)).not.toBeInTheDocument();
+    });
 
-    expect(mockLogout).toHaveBeenCalled();
-    expect(mockNavigate).toHaveBeenCalledWith('/integration-continue-exo-react');
+    const logoutButton = screen.getByText('Déconnexion');
+    await act(async () => {
+      await userEvent.click(logoutButton);
+    });
+
+    await waitFor(() => {
+      expect(mockLogout).toHaveBeenCalled();
+      expect(mockNavigate).toHaveBeenCalledWith('/integration-continue-exo-react');
+    });
   });
 });
