@@ -1,7 +1,7 @@
 export const AuthApiService = {
   async login(email, password) {
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const AuthApiService = {
 
   async logout() {
     try {
-      await fetch('http://localhost:3000/auth/logout', {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
       });
