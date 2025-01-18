@@ -6,6 +6,7 @@
 
 - Clone the repository
 - Execute the command `npm install` to install all needed packages
+- Copy and change the values of .env.template in an .env file
 - Run the application with `npm run start`
 
 ### PUBLISH NPM PACKAGE
