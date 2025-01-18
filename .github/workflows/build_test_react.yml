@@ -74,5 +74,7 @@ jobs:
           npm run build-npm
           npm publish
       - name: Deploy to Github Pages
+        env:
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
         id: deployment
         uses: actions/deploy-pages@v2
