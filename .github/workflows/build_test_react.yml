@@ -33,13 +33,9 @@ jobs:
       - name: Stop the stack
         run: docker compose down
       - name: Setup Pages
-        env:
-          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
         id: pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
-        env:
-          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
         uses: actions/upload-pages-artifact@v2
         with:
           path: build
