@@ -72,6 +72,7 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v2
