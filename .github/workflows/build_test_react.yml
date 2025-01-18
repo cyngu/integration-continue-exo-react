@@ -66,6 +66,7 @@ jobs:
       - name: build and publish package on NPM 📦
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
         run: |
           git config --global user.email "cyril.nguyen@ynov.com"
@@ -74,7 +75,7 @@ jobs:
           npm run build-npm
           npm publish
       - name: Deploy to Github Pages
-        env:
-          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
