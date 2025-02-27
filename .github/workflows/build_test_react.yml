@@ -11,6 +11,9 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     strategy:
       matrix:
         node-version: [20.12.2]
