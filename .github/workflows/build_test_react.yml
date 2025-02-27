@@ -75,6 +75,8 @@ jobs:
           git config --global user.name "cyngu"
           npm ci
           npm run build-npm
+          npm version minor
+          git push origin main --follow-tags
           npm publish
       - name: Deploy to Github Pages
         id: deployment
