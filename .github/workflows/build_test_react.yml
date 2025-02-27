@@ -1,4 +1,4 @@
-name: Build and Test React Frontend Application
+name: Build and Test React App
 on:
   push:
     branches: [main, develop]
