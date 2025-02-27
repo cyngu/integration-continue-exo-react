@@ -11,9 +11,6 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     strategy:
       matrix:
         node-version: [20.12.2]
@@ -23,7 +20,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          token: ${{ secrets.PERSONNAL_ACCESS_TOKEN }}
       - name: npm ci, build and test
         env:
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
@@ -62,6 +58,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -69,6 +66,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          token: ${{ secrets.PERSONNAL_ACCESS_TOKEN }}
       - name: Authenticate with npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - name: build and publish package on NPM 📦
