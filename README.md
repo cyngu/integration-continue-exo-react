@@ -6,12 +6,8 @@
 
 - Clone the repository
 - Execute the command `npm install` to install all needed packages
-- Copy and change the values of .env.template in an .env file
+- Copy and change the values of `.env.template` in an `.env` file
 - Run the application with `npm run start`
-
-### PUBLISH NPM PACKAGE
-
-To publish a new version of the package, execute the following command `npm version <update_type>` and push/merge in the `main` branch for the pipeline to publish.
 
 ### GITHUB PAGES
 
