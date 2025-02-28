@@ -9,6 +9,9 @@
 - Copy and change the values of `.env.template` in an `.env` file
 - Run the application with `npm run start`
 
+**⚠️ Warning:** With `Windows` environment, in `package.json` remove `PORT=8080` for the command `"start:dev"`.
+Run `PORT=8080` then execute `npm run start:dev`
+
 ### GITHUB PAGES
 
 The application is deployed on github pages : https://cyngu.github.io/integration-continue-exo-react/

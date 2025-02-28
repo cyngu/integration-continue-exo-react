@@ -65,7 +65,7 @@ describe("UserForm", () => {
         firstname: "John",
         email: "john.doe@example.com",
         password: "password123",
-        birthDate: new Date("2000-01-01").toISOString(), // Assurez-vous que le format est correct
+        birthDate: new Date("2000-01-01").toISOString(),
         city: "Paris",
         zipcode: "75001"
       });
