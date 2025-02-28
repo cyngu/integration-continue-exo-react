@@ -1,6 +1,7 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UsersList from './UsersList';
+import {toast} from "react-toastify";
 
 jest.mock('../../api/UserApiService', () => ({
   UserApiService: {
@@ -17,8 +18,12 @@ jest.mock('../../api/AuthApiService', () => ({
     logout: () => mockLogout()
   }
 }));
+jest.mock('react-toastify', () => ({
+  toast: {
+    error: jest.fn(),
+  }
+}));
 
-// Variable declarations after mocks
 const mockGetAllUsers = jest.fn();
 const mockLogout = jest.fn();
 const mockNavigate = jest.fn();
@@ -87,4 +92,34 @@ describe('UsersList', () => {
       expect(mockNavigate).toHaveBeenCalledWith('/integration-continue-exo-react');
     });
   });
+  it('handles logout failure', async () => {
+    const errorMessage = 'Logout failed';
+    mockLogout.mockRejectedValueOnce(new Error(errorMessage));
+    mockGetAllUsers.mockResolvedValueOnce([]);
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const toastErrorSpy = jest.spyOn(toast, 'error').mockImplementation(() => {});
+
+    render(<UsersList/>);
+
+    await waitFor(() => {
+      expect(screen.queryByText(/Loading.../i)).not.toBeInTheDocument();
+    });
+
+    const logoutButton = screen.getByText('Déconnexion');
+    await act(async () => {
+      await userEvent.click(logoutButton);
+    });
+
+    await waitFor(() => {
+      expect(mockLogout).toHaveBeenCalled();
+      expect(mockNavigate).not.toHaveBeenCalled();
+      expect(consoleErrorSpy).toHaveBeenCalledWith('Logout failed:', expect.any(Error));
+      expect(toastErrorSpy).toHaveBeenCalledWith('Logout failed');
+    });
+
+    consoleErrorSpy.mockRestore();
+    toastErrorSpy.mockRestore();
+  });
+
+
 });
