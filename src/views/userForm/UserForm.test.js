@@ -11,7 +11,7 @@ jest.mock('../../api/UserApiService', () => ({
 }));
 
 jest.mock('react-router-dom', () => ({
-  useNavigate: () => jest.fn(),
+  useNavigate: jest.fn(),
   Link: ({children}) => <a>{children}</a>
 }));
 
@@ -24,6 +24,7 @@ jest.mock('react-toastify', () => ({
 
 
 describe("UserForm", () => {
+  let navigate;
   beforeEach(() => {
     jest.clearAllMocks();
     mockRegisterUser.mockClear();
@@ -59,15 +60,15 @@ describe("UserForm", () => {
     fireEvent.click(screen.getByText(/S'inscrire/));
 
     await waitFor(() => {
-      expect(mockRegisterUser).toHaveBeenCalledWith(expect.objectContaining({
+      expect(mockRegisterUser).toHaveBeenCalledWith({
         name: "Doe",
         firstname: "John",
         email: "john.doe@example.com",
         password: "password123",
-        birthDate: expect.any(String),
+        birthDate: new Date("2000-01-01").toISOString(),
         city: "Paris",
         zipcode: "75001"
-      }));
+      });
     });
   });
 
@@ -79,22 +80,22 @@ describe("UserForm", () => {
       target: {value: "D@e"},
     });
     fireEvent.change(screen.getByLabelText(/Prénom/), {
-      target: {value: "John"},
+      target: {value: "John23"},
     });
     fireEvent.change(screen.getByLabelText(/Email/), {
       target: {value: "invalid-email"},
     });
     fireEvent.change(screen.getByLabelText(/Mot de passe/), {
-      target: {value: "password123"},
+      target: {value: "pass"},
     });
     fireEvent.change(screen.getByLabelText(/Date de naissance/), {
       target: {value: "2010-01-01"},
     });
     fireEvent.change(screen.getByLabelText(/Ville/), {
-      target: {value: "Paris"},
+      target: {value: "Paris1"},
     });
     fireEvent.change(screen.getByLabelText(/Code postal/), {
-      target: {value: "75001"},
+      target: {value: "abcde"},
     });
 
     fireEvent.click(screen.getByText(/S'inscrire/));
