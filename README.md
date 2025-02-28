@@ -12,6 +12,13 @@
 **⚠️ Warning:** With `Windows` environment, in `package.json` remove `PORT=8080` for the command `"start:dev"`.
 Run `PORT=8080` then execute `npm run start:dev`
 
+### TESTS 
+  Unit Tests and Integration Tests
+- Run tests with `npm run test`
+
+  End-to-End Tests
+- Run tests with `npm run cypress`
+
 ### GITHUB PAGES
 
 The application is deployed on github pages : https://cyngu.github.io/integration-continue-exo-react/
