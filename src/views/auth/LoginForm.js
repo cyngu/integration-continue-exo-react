@@ -27,19 +27,20 @@ function LoginForm() {
     setIsLoading(true);
     try {
       await AuthApiService.login(formData.email, formData.password);
-      toast.success('Login successful!');
+      toast.success('Connexion réussie !');
       navigate('/integration-continue-exo-react/users');
     } catch (error) {
-      toast.error(error.message || 'Error during login');
+      toast.error(error.message || 'Erreur lors de la connexion');
     } finally {
       setIsLoading(false);
     }
   };
 
+
   return (
       <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Login
+          Connexion
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <FormInput
@@ -51,7 +52,7 @@ function LoginForm() {
               className="w-full"
           />
           <FormInput
-              label="Password"
+              label="Mot de passe"
               type="password"
               name="password"
               value={formData.password}
@@ -65,7 +66,7 @@ function LoginForm() {
               }`}
               disabled={isLoading}
           >
-            {isLoading ? 'Logging in...' : 'Log in'}
+            {isLoading ? 'Connexion en cours...' : 'Se connecter'}
           </button>
         </form>
 
@@ -74,7 +75,7 @@ function LoginForm() {
               to="/integration-continue-exo-react"
               className="text-blue-500 hover:text-blue-700 text-sm"
           >
-            Don't have an account? Sign up here
+            Pas encore de compte ? Inscrivez-vous ici
           </Link>
         </div>
       </div>

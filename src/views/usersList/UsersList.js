@@ -50,6 +50,7 @@ function UsersList() {
     }
   };
 
+
   if (loading) {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
   }
@@ -61,12 +62,12 @@ function UsersList() {
   return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">User List</h1>
+          <h1 className="text-2xl font-bold">Liste des utilisateurs</h1>
           <button
               onClick={handleLogout}
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
           >
-            Logout
+            Déconnexion
           </button>
         </div>
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -74,19 +75,19 @@ function UsersList() {
             <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
+                Nom
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                First Name
+                Prénom
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Email
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                City
+                Ville
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Zip Code
+                Code Postal
               </th>
             </tr>
             </thead>
